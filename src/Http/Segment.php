@@ -377,7 +377,8 @@ class Segment implements RouteInterface
             $locale     = (isset($options['locale']) ? $options['locale'] : null);
 
             foreach ($this->translationKeys as $key) {
-                $regex = str_replace('#' . $key . '#', $translator->translate($key, $textDomain, $locale), $regex);
+                $translatedValue = $this->encode($translator->translate($key, $textDomain, $locale));
+                $regex = str_replace('#' . $key . '#', $translatedValue, $regex);
             }
         }
 
